@@ -1,6 +1,6 @@
 'use strict';
 
-const sensor = requre('node-dht-sensor');
+const sensor = require('node-dht-sensor');
 const DHT_TYPE = 11;
 const GPIO = 14;
 

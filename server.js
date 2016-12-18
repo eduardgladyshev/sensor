@@ -20,9 +20,10 @@ app.get('/sensor', function(req, res){
 		humidity: ''
 	}
 
+	console.log(getHumidity());
 	data.humidity = getHumidity();
 
 	res.send(JSON.stringify(data));
 });
 
-app.listen(80);
+app.listen(3000);
