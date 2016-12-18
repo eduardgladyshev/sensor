@@ -8,8 +8,11 @@ const GPIO = 14;
 
 function getH(){
 	var h = sensor.read(DHT_TYPE, GPIO, function(e, t, h){
-		return t;
+		console.log(`call sensor.read and return h: ${h}`);
+		return h;
 	});
+
+	console.log(`call getH and return h: ${h}`);
 
 	return h;
 }

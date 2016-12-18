@@ -21,7 +21,7 @@ app.get('/sensor', function(req, res){
 	}
 
 	console.log(getHumidity());
-	data.humidity = getHumidity();
+	data.humidity = 50;
 
 	res.send(JSON.stringify(data));
 });
