@@ -1,0 +1,25 @@
+.container{
+	margin: 0 auto;
+	width: 200px;
+	padding: 25px;
+	font-family: sans-serif;
+}
+.container > div {
+	margin-bottom: 30px;
+}
+.title{
+	position: relative;
+	font-size: 20px;
+	padding-left: 40px;
+	padding-bottom: 25px;
+}
+.material-icons{
+	position: absolute;
+	top: -2px;
+	left: 10px;
+}
+.value{
+	display: block;
+	font-size: 150px;
+	text-align: center;
+}

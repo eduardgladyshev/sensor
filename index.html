@@ -3,10 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id='humidity'></div>
-	
+	<div class="container">
+		<div id='humidity'>
+			<span class="title"><i class="material-icons">filter_drama</i>Влажность:</span>
+			<span class="value"></span>
+		</div>
+		<div id='temp'>
+			<span class="title"><i class="material-icons">ac_unit</i>Температура:</span> 
+			<span class="value"></span>
+		</div>
+	</div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js'></script>
 	<script src='script.js'></script>
 </body>

@@ -1,20 +1,25 @@
 'use strict';
 
-const sensor = require('node-dht-sensor');
+const nodeSensor = require('node-dht-sensor');
 const DHT_TYPE = 11;
 const GPIO = 14;
 
 
+class Sensor {	
+	getHumidity(){
+		var promise = new Promise (resolve => {
+			nodeSensor.read(DHT_TYPE, GPIO, (e, t, h) => {
+				var data = {};
+				data.h = h;
+				data.t = t;
+				resolve(data);
+			});
+		});
 
-function getH(){
-	var h = sensor.read(DHT_TYPE, GPIO, function(e, t, h){
-		console.log(`call sensor.read and return h: ${h}`);
-		return h;
-	});
-
-	console.log(`call getH and return h: ${h}`);
-
-	return h;
+		return promise;
+	} 
 }
 
-module.exports = getH;
+
+module.exports = new Sensor();
+

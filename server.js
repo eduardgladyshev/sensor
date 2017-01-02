@@ -2,13 +2,9 @@
 
 const express = require('express');
 const app = express();
-// const bodyParser = require('body-parser');
-const getHumidity = require('./sensor');
+const sensor = require('./sensor');
 
 app.use(express.static('public'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
@@ -16,14 +12,11 @@ app.get('/', function(req, res){
 
 app.get('/sensor', function(req, res){
 
-	var data = {
-		humidity: ''
-	}
+	sensor.getHumidity().then(data => {
+		console.log(data);
+		res.send(JSON.stringify(data));
+	});
 
-	console.log(getHumidity());
-	data.humidity = 50;
-
-	res.send(JSON.stringify(data));
 });
 
 app.listen(3000);
