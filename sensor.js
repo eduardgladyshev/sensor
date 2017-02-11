@@ -1,6 +1,7 @@
 'use strict';
 
 if(process.env.USER == "pi"){
+	console.log('require node-dht-sensor');
 	const nodeSensor = require('node-dht-sensor');
 };
 
@@ -11,6 +12,8 @@ const GPIO = 14;
 class Sensor {	
 	getHumidity(){
 		var promise = new Promise (resolve => {
+
+			console.log(`process.env: ${process.env.USER}`);
 
 			if(process.env.USER == 'pi'){
 				nodeSensor.read(DHT_TYPE, GPIO, (e, t, h) => {
