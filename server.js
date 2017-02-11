@@ -12,10 +12,10 @@ app.get('/', function(req, res){
 
 app.get('/sensor', function(req, res){
 
-	sensor.getHumidity().then(data => {
+	sensor.getCurrentData().then(data => {
 		console.log(data);
 		res.send(JSON.stringify(data));
-	});
+	}).catch(error => console.log(error) );
 
 });
 
