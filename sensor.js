@@ -1,12 +1,15 @@
 'use strict';
 
 const nodeSensor = require('node-dht-sensor');
+const moment = require('moment');
 const DHT_TYPE = 11;
 const GPIO = 14;
 
-let dataTable = [];
-
 class Sensor {
+	constructor(){
+		this.dataTable = [];
+	}
+
 	getCurrentData(){
 		let promise = new Promise (resolve => {
 			nodeSensor.read(DHT_TYPE, GPIO, (e, t, h) => {
@@ -28,11 +31,16 @@ class Sensor {
 			let dataRow = [];
 
 			self.getCurrentData().then(data => {
-				dataRow.push(new Date());
+				dataRow.push(moment().format('HH:mm'));
 				dataRow.push(data.h);
 				dataRow.push(data.t);
+
+				if(self.dataTable.length >= 10){
+					dataTable.shift()
+				}
+				
 				dataTable.push(dataRow);
-				console.log(`dataRow pushed`);
+
 			}).catch(error => {
 				console.log(error);
 			});
@@ -42,6 +50,10 @@ class Sensor {
 
 		setInterval(writeDataRow, 60000);
 
+	}
+
+	getDataCollection(){
+		return this.dataTable;
 	}
 }
 

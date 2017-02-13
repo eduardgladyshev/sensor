@@ -13,10 +13,13 @@ app.get('/', function(req, res){
 app.get('/sensor', function(req, res){
 
 	sensor.getCurrentData().then(data => {
-		console.log(data);
 		res.send(JSON.stringify(data));
 	}).catch(error => console.log(error) );
 
+});
+
+app.get('/data', function(req, res){
+	res.send(sensor.getDataCollection());
 });
 
 app.listen(3000);
