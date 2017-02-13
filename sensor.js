@@ -36,16 +36,16 @@ class Sensor {
 				dataRow.push(data.t);
 
 				if(self.dataTable.length >= 10){
-					dataTable.shift()
+					self.dataTable.shift()
 				}
 				
-				dataTable.push(dataRow);
+				self.dataTable.push(dataRow);
+				console.log(self.dataTable);
 
 			}).catch(error => {
 				console.log(error);
 			});
 
-			console.log(dataTable);
 		}
 
 		setInterval(writeDataRow, 60000);
