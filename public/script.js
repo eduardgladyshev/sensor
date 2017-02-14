@@ -30,11 +30,15 @@ function drawChart(){
 		then(res => {
 			return res.json();
 		})
-		.then(data => {
-			console.log(`arr from server: \n ${d}`);
-			data.addRows(d);
+		.then(resData => {
+			console.log(`arr from server: \n ${resData.push}`);
+			console.log(data);
+			data.addRows( resData );
 
 			var chart = google.visualization.LineChart(document.getElementById('chart'));
-			chart.draw(data, null);
+			chart.draw(data, {width: 300, height: 200});
+		})
+		.catch(error => {
+			console.log(error);
 		});
 }

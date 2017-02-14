@@ -19,7 +19,7 @@ app.get('/sensor', function(req, res){
 });
 
 app.get('/data', function(req, res){
-	res.send(sensor.getDataCollection());
+	res.send(JSON.stringify( sensor.getDataCollection() ));
 });
 
 app.listen(3000);
