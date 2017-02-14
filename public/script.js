@@ -1,9 +1,21 @@
 'use script';
 
-$.get('/sensor', function (data){
-	$('#humidity .value').text(data.h);
-	$('#temp .value').text(data.t);
-});
+// $.get('/sensor', function (data){
+// 	$('#humidity .value').text(data.h);
+// 	$('#temp .value').text(data.t);
+// });
+
+fetch('/sensor')
+	.then(res => {
+		return res.json();
+	})
+	.then(data => {
+		document.querySelector('#humidity .value').innerHTML = data.h;
+		document.querySelector('#temp .value').innerHTML = data.t;
+	})
+	.catch(error => {
+		console.log(error);
+	});
 
 google.charts.load('current', {packages: ['corechart']});
 google.charts.setOnLoadCallback(drawChart);
@@ -14,11 +26,15 @@ function drawChart(){
 	data.addColumn('number', 'Humidity');
 	data.addColumn('number', 'Temp');
 
-	$.get('/data', function(d){
-		console.log(`arr from server: \n ${d}`);
-		data.addRows(d);
+	fetch('/data').
+		then(res => {
+			return res.json();
+		})
+		.then(data => {
+			console.log(`arr from server: \n ${d}`);
+			data.addRows(d);
 
-		var chart = google.visualization.LineChart(document.getElementById('chart'));
-		chart.draw(data, null);
-	});
+			var chart = google.visualization.LineChart(document.getElementById('chart'));
+			chart.draw(data, null);
+		});
 }
